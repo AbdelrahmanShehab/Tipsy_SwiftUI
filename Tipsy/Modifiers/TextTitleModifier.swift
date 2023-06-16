@@ -12,6 +12,7 @@ struct TextTitleModifier: ViewModifier {
         content
             .frame(width: 300, height: 60, alignment: .center)
             .font(.system(size: 50, weight: .heavy, design: .monospaced))
+            .kerning(7)
             .foregroundStyle(.linearGradient(Gradient(colors: [
                 Color("Navy"),
                 Color("Purple")])

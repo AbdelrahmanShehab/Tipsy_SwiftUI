@@ -28,30 +28,15 @@ struct ContentView: View {
             
             VStack {
                 
-                // MARK: -  Tips
-                VStack(alignment: .leading, spacing: 25) {
-                    
-                    Text("Select Tip")
-                        .modifier(TextSectionModifier())
-                   
-                    HStack(alignment: .center, spacing: 30) {
-                        ForEach(tipsViewModel.tips, id: \.text) { tip in
-                            TipButton(isSelected: tip.isTipSelected, text: tip.text) {
-                                tipsViewModel.tipAsDouble = self.tipsViewModel.selectTips(tip)
-//                                print(tipValue)
-                                tipsViewModel.tipAsString = self.tipsViewModel.chooseTipsAsString(tip)
-//                                print(tipViewModel.tipAsString)
-                            }
-                        }//: LOOP
-                    }//: HSTACK
-                }//: VSTACK
-                .padding(.horizontal)
-                .padding(.bottom, 20)
+                // MARK: -  TIPS
+                
+                TipsView()
                 
                 Divider()
                 
                 // MARK: -  SPLIT VIEW
                 SplitView()
+                
                 Divider()
                 
                 // MARK: -  CALCULATION BUTTON
