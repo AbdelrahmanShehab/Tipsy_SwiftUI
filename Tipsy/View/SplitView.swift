@@ -9,7 +9,15 @@ import SwiftUI
 
 struct SplitView: View {
     // MARK: -  PROPERTY
-    @Binding var stepValue: Int
+    @EnvironmentObject var tipsModel: TipsViewModel
+
+    /// Make Customization in Stepper Button
+    /*
+    init() {
+        UIStepper.appearance().setIncrementImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        UIStepper.appearance().setDecrementImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+    }
+    */
     
     // MARK: -  BODY
     var body: some View {
@@ -17,7 +25,7 @@ struct SplitView: View {
             Text("Choose Split")
                 .modifier(TextSectionModifier())
             HStack(alignment: .center, spacing: 15) {
-                Text("\(stepValue)")
+                Text("\(tipsModel.numberOfPeople)")
                     .frame(width: 65, height: 65, alignment: .center)
                     .font(.system(size: 35, weight: .bold, design: .monospaced))
                     .foregroundColor(Color("Silver"))
@@ -27,7 +35,7 @@ struct SplitView: View {
                             .shadow(color: Color("Lavander"), radius: 3)
                     )
                 
-                Stepper("", value: $stepValue, in: 2...16, step: 1)
+                Stepper("", value: $tipsModel.numberOfPeople, in: 2...16, step: 1)
             }
         }
         .padding(.horizontal)
@@ -39,7 +47,9 @@ struct SplitView: View {
 struct SplitView_Previews: PreviewProvider {
     @State static var value: Int = 2
     static var previews: some View {
-        SplitView(stepValue: $value)
+        SplitView()
+            .environmentObject(TipsViewModel())
             .previewLayout(.sizeThatFits)
+        
     }
 }

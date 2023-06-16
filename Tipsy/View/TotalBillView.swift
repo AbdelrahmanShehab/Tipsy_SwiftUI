@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TotalBillView: View {
     // MARK: -  PROPERTIES
-    @Binding var billValue: String
+    @EnvironmentObject var tipsModel: TipsViewModel
     
     // MARK: -  BODY
     var body: some View {
@@ -20,7 +20,7 @@ struct TotalBillView: View {
                 .font(.system(.subheadline, design: .monospaced, weight: .semibold))
                 .frame(width: 300, height: 40, alignment: .leading)
             
-            TextField(text: $billValue) {
+            TextField(text: $tipsModel.totalBill) {
                 Text("$")
                     .font(.system(size: 45))
             }//: TEXTFIELD
@@ -39,7 +39,8 @@ struct TotalBillView: View {
 struct TotalMoneyView_Previews: PreviewProvider {
     @State static var value: String = ""
     static var previews: some View {
-        TotalBillView(billValue: $value)
+        TotalBillView()
+            .environmentObject(TipsViewModel())
             .previewLayout(.sizeThatFits)
     }
 }

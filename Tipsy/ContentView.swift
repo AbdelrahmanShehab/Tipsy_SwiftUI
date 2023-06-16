@@ -22,7 +22,7 @@ struct ContentView: View {
             Spacer()
             
             // MARK: -  TOTAL BILL
-            TotalBillView(billValue: $tipsViewModel.totalBill)
+            TotalBillView()
             
             Spacer()
             
@@ -51,7 +51,7 @@ struct ContentView: View {
                 Divider()
                 
                 // MARK: -  SPLIT VIEW
-                SplitView(stepValue: $tipsViewModel.numberOfPeople)
+                SplitView()
                 Divider()
                 
                 // MARK: -  CALCULATION BUTTON
@@ -75,7 +75,6 @@ struct ContentView: View {
                 .buttonStyle(GrowingButton())
           
             }//: VSTACK
-            .environmentObject(tipsViewModel)
             .padding(.horizontal)
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color("DarkPurple"), Color("")]), startPoint: .top, endPoint: .bottom).opacity(0.75)
@@ -84,6 +83,7 @@ struct ContentView: View {
             )
             
         }//: VSTACK
+        .environmentObject(tipsViewModel)
         .background(
             LinearGradient(gradient: Gradient(colors: [Color("Lavander"), Color("DarkPurple")]), startPoint: .topTrailing, endPoint: .bottomLeading)
         )
