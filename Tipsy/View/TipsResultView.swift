@@ -11,9 +11,6 @@ struct TipsResultView: View {
     // MARK: -  PROPERTIES
     @EnvironmentObject var tipsModel: TipsViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var isPresentingModel: Bool = false
-    
-    
     
     // MARK: -  BODY
     var body: some View {
@@ -35,6 +32,7 @@ struct TipsResultView: View {
                     .font(.system(size: 35, weight: .bold, design: .monospaced))
                     .foregroundColor(Color("SkyBlue"))
                     .multilineTextAlignment(.center)
+                    .lineSpacing(10)
                 
                 Divider()
                 
@@ -48,9 +46,8 @@ struct TipsResultView: View {
                     dismiss()
                 } label: {
                     Text("Recalculate")
-                        .font(.system(size: 35, weight: .bold, design: .monospaced))
                 }
-                .buttonStyle(GrowingButton())
+                .buttonStyle(GrowingButton(colorName: "Yellow"))
                 .padding(.top, 25)
                 .padding(.bottom, 15)
                 

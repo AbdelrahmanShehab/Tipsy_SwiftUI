@@ -12,6 +12,18 @@ struct ContentView: View {
     @State private var isPresentingModel: Bool = false
     @StateObject var tipsViewModel = TipsViewModel()
     
+    // MARK: -  CALULATE TIPS
+    
+    func CalculateTips() {
+        if tipsViewModel.totalBill != "" {
+            let billTotal = Double(tipsViewModel.totalBill)!
+            let result = (billTotal + tipsViewModel.tipAsDouble * billTotal) / Double(tipsViewModel.numberOfPeople)
+            
+            tipsViewModel.finalTipsResult = String(format: "%.2f", result)
+            print(tipsViewModel.finalTipsResult)
+            self.isPresentingModel = true
+        }
+    }
     
     // MARK: -  BODY
     var body: some View {
@@ -35,6 +47,7 @@ struct ContentView: View {
                 Divider()
                 
                 // MARK: -  SPLIT VIEW
+                
                 SplitView()
                 
                 Divider()
@@ -42,22 +55,14 @@ struct ContentView: View {
                 // MARK: -  CALCULATION BUTTON
                 
                 Button {
-                    if tipsViewModel.totalBill != "" {
-                        let billTotal = Double(tipsViewModel.totalBill)!
-                        let result = (billTotal + tipsViewModel.tipAsDouble * billTotal) / Double(tipsViewModel.numberOfPeople)
-                        
-                        tipsViewModel.finalTipsResult = String(format: "%.2f", result)
-                        print(tipsViewModel.finalTipsResult)
-                        self.isPresentingModel = true
-                    }
+                    CalculateTips()
                 } label: {
                     Text("Calculate")
-                        .font(.system(size: 35, weight: .bold, design: .monospaced))
                 }
                 .sheet(isPresented: $isPresentingModel, content: {
                     TipsResultView()
                 })
-                .buttonStyle(GrowingButton())
+                .buttonStyle(GrowingButton(colorName: "Silver"))
           
             }//: VSTACK
             .padding(.horizontal)

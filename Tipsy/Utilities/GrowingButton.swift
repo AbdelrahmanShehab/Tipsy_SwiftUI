@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GrowingButton: ButtonStyle {
+    let colorName: String
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 270, height: 50, alignment: .center)
@@ -15,7 +17,8 @@ struct GrowingButton: ButtonStyle {
             .background(
                 LinearGradient(gradient: Gradient(colors: [Color("Purple"), Color("Lavander")]), startPoint: .topLeading, endPoint: .bottomTrailing)
             )
-            .foregroundColor(Color("Silver"))
+            .font(.system(size: 35, weight: .bold, design: .monospaced))
+            .foregroundColor(Color(colorName))
             .clipShape(Capsule())
             .shadow(color: Color("Lavander"), radius: 4)
             .scaleEffect(configuration.isPressed ? 1.5 : 1)

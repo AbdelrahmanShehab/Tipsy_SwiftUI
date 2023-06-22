@@ -22,7 +22,6 @@ class TipsViewModel: ObservableObject {
         Tips(text: "20%")
     ]
     
-
     func selectTips(_ tip: Tips) -> Double {
         tips.forEach {
             $0.isTipSelected = false
@@ -49,6 +48,4 @@ class TipsViewModel: ObservableObject {
         }
         objectWillChange.send()
     }
-    
-    
 }
